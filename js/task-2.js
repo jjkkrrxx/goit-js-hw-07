@@ -26,30 +26,11 @@ const images = [
 ];
 
 
-const createGalleryCard = pictureInfo => {
-  const galleryItemEl = document.createElement('li');
-
-  galleryItemEl.classList.add('gallery-item');
-
-  const galleryLinkEl = document.createElement('a');
-  
-  galleryLinkEl.href = '#';
-
-  galleryItemEl.append(galleryLinkEl);
-
-  const galleryImageEl = document.createElement('img');
-
-  galleryImageEl.src = pictureInfo.url;
-
-  galleryImageEl.alt = pictureInfo.alt;
-
-  galleryLinkEl.append(galleryImageEl);
-
-  return galleryItemEl;
-};
-
-const galleryCardsArr = images.map(imgInfo => createGalleryCard(imgInfo));
-
-const galleryListEl = document.querySelector('.gallery');
-
-galleryListEl.append(...galleryCardsArr);
+const gallery = document.querySelector('.gallery');
+const markup = images
+  .map(image => `
+    <li class="gallery-item">
+      <img src="${image.url}" alt="${image.alt}" width="360">
+    </li>`)
+  .join("");
+gallery.insertAdjacentHTML("beforeend", markup);
